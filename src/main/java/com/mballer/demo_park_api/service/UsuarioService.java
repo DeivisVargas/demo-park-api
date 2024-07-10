@@ -6,28 +6,38 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 //para fazer a injeção de dependencia via metodo construtor
 @RequiredArgsConstructor
-
 @Service
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
-
 
     @Transactional
     public Usuario salvar(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
 
-    @Transactional(readOnly = true) // para dizer que é apenas uma consulta
+    @Transactional(readOnly = true)
     public Usuario buscarPorId(Long id){
-        //a varias maneiras de consultar , essa orElseThrow caso não encontre o usuario lança uma exeção
         return usuarioRepository.findById(id).orElseThrow(
                 () -> new RuntimeException("Usuário não encontrado")
         );
     }
 
+    @Transactional(readOnly = true)
+    public List<Usuario> buscarTodos(){
+        return usuarioRepository.findAll();
+    }
 
+
+    @Transactional
+    public Usuario editarSenha(Long id , String password){
+        Usuario user = buscarPorId(id) ;
+        user.setPassword(password);
+        return  user;
+    }
 }

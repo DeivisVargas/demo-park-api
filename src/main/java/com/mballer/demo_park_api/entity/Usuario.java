@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-//pacote lombok
+//pacote lombok para montagem de getter e setter automatico
 @Getter @Setter @NoArgsConstructor
 
 @Entity
