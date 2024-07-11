@@ -28,7 +28,7 @@ public class Usuario implements Serializable {
     //para salvar  o enum como string no banco de dados
     @Enumerated(EnumType.STRING)
     @Column(name = "Role" , nullable = false , length = 25)
-    private Role role;
+    private Role role = Role.ROLE_CLIENTE;  // para sempre inserir default cliente
 
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;
@@ -68,4 +68,6 @@ public class Usuario implements Serializable {
                 "id=" + id +
                 '}';
     }
+
+
 }
