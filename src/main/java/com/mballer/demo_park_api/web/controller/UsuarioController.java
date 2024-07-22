@@ -7,6 +7,7 @@ import com.mballer.demo_park_api.web.dto.UsuarioCreateDto;
 import com.mballer.demo_park_api.web.dto.UsuarioResponseDto;
 import com.mballer.demo_park_api.web.dto.UsuarioSenhaDto;
 import com.mballer.demo_park_api.web.dto.mapper.UsuarioMapper;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +24,9 @@ public class UsuarioController
 
     private final UsuarioService usuarioService;
 
+    //@Valid para dizer ao controller que ele deve validar os campos
     @PostMapping
-    public ResponseEntity<UsuarioResponseDto> create(@RequestBody UsuarioCreateDto createDto){
+    public ResponseEntity<UsuarioResponseDto> create(@Valid @RequestBody UsuarioCreateDto createDto){
         Usuario user =  usuarioService.salvar(UsuarioMapper.toUsuario(createDto));
 
         return  ResponseEntity.status(HttpStatus.CREATED).body(UsuarioMapper.toDto(user));
