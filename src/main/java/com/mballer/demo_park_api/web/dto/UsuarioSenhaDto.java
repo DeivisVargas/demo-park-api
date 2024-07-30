@@ -1,6 +1,8 @@
 package com.mballer.demo_park_api.web.dto;
 
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 @Getter
@@ -9,7 +11,15 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class UsuarioSenhaDto {
+    @NotBlank(message = "Senha atual não pode ser vazia")
+    @Size(min = 6 , max = 6)
     private  String senhaAtual ;
+
+    @NotBlank(message = "Nova senha  não pode ser vazia")
+    @Size(min = 6 , max = 6 )
     private  String novaSenha ;
+
+    @NotBlank(message = "Confirma Senha não pode ser vazia")
+    @Size(min = 6 , max = 6)
     private  String confirmaSenha ;
 }
