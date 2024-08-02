@@ -27,7 +27,6 @@ public class UsuarioService {
         }catch (org.springframework.dao.DataIntegrityViolationException ex){ //tratando exeção do banco de dados
             throw new UsernameUniqueViolationException(String.format("Username {%s} já cadastrado " , usuario.getUsername()));
 
-            //String.format para formatar string com variáveis
         }
 
     }
